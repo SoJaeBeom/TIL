@@ -29,3 +29,32 @@ Dynamic Types -> resolved at runtime
   - 고유하고 수정 불가능한 값으로 만들어 준다.
   - 접근을 제어하는데 쓰는 경우가 많다.
 6. null & undefined
+
+### Non-Primitive Type
+1. object
+2. array
+3. tuple
+  - 배열인데 타입이 한가지가 아닌 경우
+    ```ts
+    let x: [string, number];
+    x = ["hello", 10];
+    ```
+4. any
+  - 어떤 타입이어도 상관없는 타입이다.
+  - 컴파일 타임에 타입 체크가 정상적으로 이뤄지지 않기 때문이다.
+  - 컴파일 옵션 중에는 any를 써야하는데 쓰지 않으면 오류를 뱉도록 하는 옵션이 있다. -> nolmplicitAny
+5. unknown
+  - any와 짝으로 any보다 Type-safe한 타입이다.
+  - any와 같이 아무거나 할당할 수 있다.
+  - 컴파일러가 타입을 추론할 수 있게끔 타입의 유형을 좁히거나 타입을 확정해주지 않으면 다른 곳에 할당 할 수 없고, 사용할 수 없다.
+6. never
+  - 리턴에 사용된다.
+  - 잘몬된 타입을 넣는 실수를 막고자 할 때 사용한다.
+    ```ts
+    type Indexable<T> = T extends string ? T & { [index: string]: any } : never;
+    ```
+7. void
+  - 어떤 타입도 가지지 않는 빈 상태를 의미한다.
+  - 값은 겂고 타입만 있다.
+  - 할당이 가능한 값은 undefined이다.
+  
