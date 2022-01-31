@@ -19,3 +19,28 @@
   - target이 es6이면 디폴트로 dom, es6, dom.iterable, scripthost를 사용한다.
 - lib를 지정하면 그 lib 배열로만 라이브러리를 사용한다.
   - 빈 [] => no definition found... 라는 에러를 나타낸다.
+
+4. outDir
+  - 컴파일 후 생성되는 js파일이 생성될 폴더명
+
+5. outFile
+  - 복수 파일을 묶어 하나의 파일로 출력 설정
+
+6. rootDir
+  - 시작하는 루트 폴더
+
+7. strict
+  - --noImplicitAny
+    - 명시적이지 않은 'any' 유형으로 표현식 및 선언 사용 시 오류 발생
+  - --noImplicitThis
+    - 명시적이지 않은 'any'유형으로 'this' 표현식 사용 시 오류 발생
+  - --strictNullChecks
+    - 엄격한 null 검사 사용
+  - --strictFunctionTypes
+    - 엄격한 함수 유형 검사 사용
+  - --strictPropertyInitialization
+    - 클래스에서 속성 초기화 엄격 검사 사용
+  - --strictBindCallApply
+    - 엄격한 'bind', 'call', 'apply' 함수 메서드 사용
+  - --alwaysStrict
+    - 엄격모드에서 구문 분석 후, 각 소스 파일에 "use strict" 코드를 출력
