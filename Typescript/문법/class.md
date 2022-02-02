@@ -114,3 +114,28 @@ console.log(p1.name); // Get, get을 하는 함수 : getter
 p1.name = 'Woongjae'; // Set, set을 하는 함수 : setter
 console.log(p1.name);
 ```
+
+6. readonly properties
+- set은 할 수 없고 get만 할 수 있는 method다.
+- readonly : 수정불가능하게 막아 놓을 때 사용한다.
+```ts
+class Person {
+    public readonly name: string = 'Mark';
+    private readonly country: string;
+    public constructor(private _name: string, private age: number) {
+        // constructor 안에서만 this로 값 세팅 가능.
+        this.country = "Korea";
+    }
+
+    hello() {
+        // readonly이고 private이므로 수정 불가.
+        // this.country = "China";
+    }
+}
+
+const p1: Person = new Person("Mark", 39);
+console.log(p1.name); // Get, get을 하는 함수 : getter
+// p1.name = 'Woongjae'; // Set, set을 하는 함수 : setter
+console.log(p1.name);
+
+```
