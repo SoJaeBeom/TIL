@@ -137,5 +137,140 @@ const p1: Person = new Person("Mark", 39);
 console.log(p1.name); // Get, get을 하는 함수 : getter
 // p1.name = 'Woongjae'; // Set, set을 하는 함수 : setter
 console.log(p1.name);
+```
+7. Index Signatures in class
+- property가 고정된 것이 아닌 동적으로 바뀌는 상황에서 고려해볼 만한 부분.
+```ts
+// class => object를 만들어내는 청사진
+// {mark: 'male', jade: 'male'}
+// {chloe: 'female', alex: 'male', anna: 'female'}
 
+class Students {
+    // mark: string = 'male';
+    [index: string]: 'male' | 'female'; // string, 항상 male or female로 설정.
+
+    mark: "male" = "male";
+}
+
+const a = new Students();
+a.mark = "male";
+a.jade = "male";
+
+console.log(a);
+
+const b = new Students();
+b.chloe = "female";
+b.alex = "male"
+b.anna = "female";
+
+console.log(b)
+```
+
+8. Static Properites & Methods
+```ts
+class Person {
+    public static CITY = "Seoul";
+    public hello() {
+        console.log("안녕하세요!", Person.CITY);
+    }
+    public change() {
+        Person.CITY = "LA";
+    }
+}
+
+const p1 = new Person();
+p1.hello(); // 안녕하세요 Seoul
+
+const p2 = new Person();
+p2.hello(); // 안녕하세요 Seoul
+p1.change(); // 'LA로 변경'
+p2.hello(); // 안녕하세요 LA
+
+// static : 공통적으로 사용할 부분들.
+// Person.hello();
+// Person.CITY;
+```
+9. Singletons
+- 어플리케이션이 실행되는 중간에 클래스로부터 단 하나의 오브젝트만 생성해서 실행하는 패턴이다.
+```ts
+class ClassName {
+    private static instance: ClassName | null = null;
+    // private로 new로 직접 생성할 수 없도록 막음.
+    public static getInstance(): ClassName {
+        // ClassName 으로부터 만든 Object가 있으면 그걸 리턴
+        // 없으면, 만들어서 리턴.
+        if (ClassName.instance === null) {
+            ClassName.instance = new ClassName();
+        }
+
+        return ClassName.instance;
+    }
+    private constructor() {} 
+}
+
+const a = ClassName.getInstance();
+const b = ClassName.getInstance();
+
+console.log(a === b); // true (같은 object)
+```
+10. 상속
+- 클래스가 다른 클래스를 가져다가 자신만의 기능을 추가해서 사용하는 것이다.
+```ts
+class Parent {
+    // protected : 외부에서는 사용 불가하지만 상속하면 사용 가능.
+    constructor(protected _name: string, private _age: number) {}
+
+    public print(): void {
+        console.log(`이름은 ${this._name}이고, 나이는 ${this._age} 입니다.`)
+    }
+
+    protected printName(): void {
+        console.log(this._name, this._age)
+    }
+}
+
+// const p = new Parent("Mark", 39);
+// p.print(); // 이름은 Mark이고, 나이는 39입니다.
+
+class Child extends Parent {
+    // Parnet의 생성자를 그대로 가져옴.
+    public gender = 'male';
+    // override (접근제어자 까지도 됨.)
+    // public _name = "Mark Jr.";
+    // 생성자 ovveride
+    constructor(age:number) {
+        // parent의 생성자를 꼭 호출해야함 (중요!)
+        super('Mark Jr.', age)
+        // 자식의 생성자에서는 무조건 super 먼저 호출
+        this.printName();
+    }
+}
+
+// 부모 생성자대로 호출해야함.
+const c = new Child(1);
+c.print()
+// Mark Jr. 1
+// 이름은 Mark Jr.이고, 나이는 1 입니다.
+
+// 애플리케이션이 복잡해지면 부모와 자식의 영역에서 각각 할 수 있는 것을 계획하고 구분하는 것이 중요.
+```
+11. Abstract Classes
+- 완전하지 않은 객체를 상속을 통해서 완전하게 하여 사용한다.
+```ts
+abstract class AbstractPerson {
+    protected _name: string = 'Mark';
+
+    abstract setName(name: string): void;
+}
+
+// new AbstractPerson() (x)
+
+class Person extends AbstractPerson {
+    setName(name: string): void {
+        this._name = name;
+    }
+}
+
+const p = new Person();
+// p.setName();
 ```
