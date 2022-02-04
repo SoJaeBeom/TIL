@@ -40,10 +40,14 @@ function helloBasic<T, U>(message: T, comment: U): T {
     return message;
 }
 
+직접 지정할때 -> 지정된 타입으로 체크
+지정하지 않으면 -> 
+
 // 사용
-helloBasic<string, number>("Mark", 39); // <>에 넣고 사용하면 뒤에가 제한, 안넣으면 T가 추론됨.
+helloBasic<string, number>("Mark", 39); // <>에 직접 넣어 지정하면 지정된 타입으로 체크.
 helloBasic(36, 39); // 지정하지 않으면 각각 추론.
 ```
+
 3. Generics Array & Tuple
 ```ts
 function helloArray<T>(message: T[]): T {
@@ -61,4 +65,102 @@ function helloTuple<T, K>(message: [T, K]): T {
 
 helloTuple(['Hello', 'world']);
 helloTuple(['Hello', 5]);
+```
+
+4. Generics Function
+```ts
+// 함수의 타입 설정
+
+type HelloFunctionGeneric1 = <T>(message: T) => T;
+
+const HelloFunctionGeneric1: HelloFunctionGeneric1 = <T>(message: T) => {
+    return message;
+};
+
+
+interface HelloFunctionGeneric2 {
+    <T>(message: T): T;
+}
+
+const helloFunction2 : HelloFunctionGeneric2 = <T>(message: T) => {
+    return message;
+};
+
+// 기본 함수 선언에 generic 부분 추가해주는 형식.
+```
+
+5. Generics Class
+```ts
+class Person<T, K> {
+    private _name: T; // T의 유효범위는 클래스 전체 범위 안.
+    private _age: K;
+
+    constructor(name: T, age: K) {
+        this._name = name;
+        this._age = age;
+    }
+}
+
+new Person("Mark", 39);
+// new Person<string>(39); // string이 아니라서 오류 발생.
+// new Person<string, number>("Mark", "age"); // number 자리에 문자열이라서 오류
+
+// 컴파일 타임의 에러를 미리 체크해서 처리하는 역할을 수행하여 유용.
+```
+
+6. Generics with extends
+- extends ⇒ generic에서는 기존 상속의 의미와 조금 다르다.
+```ts
+class PersonExtends<T extends string | number> { // T는 string과 number만 가능하도록 제한.
+    private _name: T;
+
+    constructor(name: T) {
+        this._name = name;
+    }
+}
+
+new PersonExtends("Mark");
+new PersonExtends(39);
+// new PersonExtends(true); // 타입은 항상 가장 작은 범위로 제한 해주기.
+// 제한을 통해 이 코드의 제 3자에게 올바른 가이드라인 제공.
+```
+
+7. keyof & type lookup system
+- type을 적절히 찾아내고 활용하는 시스템.(컴파일 타임의 타입을 정확하게 찾아낼 수 있는 방법)
+```ts
+interface IPerson {
+    name: string;
+    age: number;
+}
+
+const person: IPerson = {
+    name: 'Mark',
+    age: 39,
+};
+
+type Keys = keyof IPerson;
+
+const keys: Keys = "name";
+
+// 프로퍼티의 값을 가져오거나 활용할 수 있는 함수
+
+// IPerson[keyof IPerson] 
+// => IPerson["name" | "age"] 
+// => IPerson["name"] | IPerson["age"] 
+// => string | number
+function getProp<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+
+getProp(person, 'age');
+
+function setProp<T, K extends keyof T>(
+    obj: T, 
+    key: keyof T,
+    value: T[keyof T],
+): void {
+    obj[key] = value;
+}
+
+setProp(person, "name", "Anna");
 ```
