@@ -92,3 +92,144 @@ export default App
 ```
 
 ### 차이점 2 : state
+> ### state 란?  
+> - 컴포넌트 내부에서 바뀔 수 있는 값
+
+#### 클래스형 컴포넌트
+1. constructor 안에서 this.state 초기 값 설정 가능하다.
+2. counstructor 없이도 바로 state 초기값을 설정 가능하다.
+3. this.setState() 를 통해 state값을 변경한다.
+4. 클래스형의 state는 객체형식이다.
+```js
+import React, { Component } from 'react'
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      test1: [],
+      test: '',
+      number: 1
+    }
+  }
+  testFunction = () => {
+    this.setState({ number: number + 1 })
+  }
+  render() {
+    const name = '클래스형 컴포넌트'
+    return <div>{name}</div>
+  }
+}
+
+export default App
+```
+
+#### 함수형 컴포넌트
+1. useState 함수로 state를 사용한다.
+2. useState 함수를 호출하면 배열이 반환되는데 첫 번째 원소는 현재 상태, 두번째 원소는 상태를 바꿔주는 함수이다.
+```js
+import React, { useState } from 'react'
+
+const App = () => {
+  const [test1, setTest1] = useState([])
+  const [test2, setTest2] = useState('')
+  const [number, setNumber] = useState(1)
+
+  const testFunction = () => {
+    setNumber(number + 1)
+  }
+  const name = '함수형 컴포넌트'
+  return <div>{name}</div>
+}
+
+export default App
+```
+
+### 차이점 3 : props
+> ### props 란?  
+> - 컴포넌트의 속성을 설정
+> - 읽기 전용(컴포넌트 자체 pros를 수정하면 안된다.)
+> - 모든 React 컴포넌트는 자신의 props를 다룰 때 반드시 순수 함수처럼 동작해야 한다.
+> - 수정되는 값은 state 이다.
+
+#### 클래스형 컴포넌트
+1. this.props로 통해 값을 불러올 수 있다.
+```js
+import React, { Component } from 'react'
+class App extends Component {
+  render() {
+    const {number, testNumber} = this.props
+    const title = '클래스형 컴포넌트'
+    return <div>{testName}의 나이는 {number}살 입니다.</div>
+  }
+}
+
+export default App
+```
+
+#### 함수형 컴포넌트
+1. props를 불러올 필요 없이 바로 호출 할 수 있다.
+```js
+import React, { useState } from 'react'
+const App = ({ number, testName }) => {
+  const title = '함수형 컴포넌트'
+  return (
+    <div>
+      {testName}의 나이는 {number}살 이다.
+    </div>
+  )
+}
+
+export default App
+```
+
+### 차이점 4 : 이벤트 핸들링
+#### 클래스형 컴포넌트
+1. 함수 선언시 화살표 함수로 바로 선언 가능하다.
+2. 요소에 적용할때 this.를 붙여줘야한다.
+```js
+import React, { Component } from 'react'
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      number: 1
+    }
+  }
+  onClikcFunc = () => {
+    this.setState({number: number + 1})
+  }
+  render() {
+    const title = '클래스형 컴포넌트'
+    return (
+      <div>
+        <button onClick={this.onClickFunc}>버튼</button>
+      </div>
+    )
+  }
+}
+
+export default App
+```
+
+#### 함수형 컴포넌트
+1. const + 함수 형태로 선언해야 한다.
+2. 요소에 적용할때 this가 필요없다.
+```js
+import React, { useState } from 'react'
+const App = () => {
+  const [number, setNumber] = useState('')
+
+  const onClickFunc = () => {
+    setNumber(number + 1)
+  }
+  const title = '함수형 컴포넌트'
+  return (
+    <div>
+      <button onClick={onClickFunc}>버튼</button>
+    </div>
+  )
+}
+
+export default App
+```
