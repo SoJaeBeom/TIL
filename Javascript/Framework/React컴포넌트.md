@@ -233,3 +233,87 @@ const App = () => {
 
 export default App
 ```
+
+### 차이점 5 : Life Cycle
+> ### Life Cycle 이란?
+> - React에서 컴포넌트는 여러 종류의 "생명주기 메소드" 를 가지며 이 메소드를 오버라이딩(상속하여 재정의) 하여 특정 시점에 코드가 실행되도록 설정 한다.
+> - 클래스 컴포넌트에만 해당되는 내용이며, 함수형 컴포넌트는 Hook를 사용하여 생명주기에 원하는 동작을 한다.
+
+#### 클래스형 컴포넌트
+1. Mounting (생성 될 때) : 컴포넌트가 인스턴스로 생성되고 DOM 트리에 삽입되어 브라우저상에 나타는 과정이다.
+- constructor
+  - 시점 : 브라우저상에 나타날 때 가장 처음 실행되는 함수다.
+
+  - 사용 이유 : 생성자 메서드로 this.state의 초기값 설정, 인스턴스에 이벤트 처리 메서드를 바인딩하기 위해 사용하고 super(props)를 첫 줄에 필수로 사용한다.
+  ```js
+  constructor(props) {
+    super(props)
+    this.state = {
+      number: 1
+    }
+  }
+  ```
+- static getDerivedStateFromProps
+  - 시점 : 컴포넌트가 처음 렌더링 되기 전에도 호출 되고 그 이후 리렌더링 되기 전에도 매번 실행된다.
+
+  - 사용이유 : props로 받은 값을 state에다가 넣고 싶을때 사용한다.(거의 쓰지 않는 함수이다.)
+  ```js
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.value !== nextProps.value) {
+      return {
+        value: nextProps.value
+      }
+    }
+  }
+  ```
+- render()
+  - 컴포넌트를 렌더링하는 메서드이다.
+```js
+render() {
+  const title = '클래스형 컴포넌트'
+  return (
+    <div>
+      <button onClick={this.onClickFunc}>버튼</button>
+    </div>
+  )
+}
+```
+- componentDidMount
+  - 시점 : 컴포넌트가 생성된 직후, 트리에 삽입된 직후에 호출되고, 이 메서드가 호출되는 시점에는 우리가 만든 컴포넌트가 화면에 나타난 상태이다.
+
+  - 사용이유 : 외부 라이브러리를 사용하여 특정 DOM에다가 차트를 그릴때, 컴포넌트에서 필요로하는 데이터 요청, DOM의 속성을 읽거나 직접 변경하는 작업을 할 때 사용한다.
+
+2. Updating (업데이트 할 때) : 컴포넌트 props 또는 state가 바뀌었을 때
+- static getDerivedStateFromProps
+  - Mounting 에서 등장한 메서드로 업데이트에서도 호출된다.
+
+- shouldComponentUpdate
+  - 시점 : props 또는 state가 새로운 값으로 갱신되어 렌더링이 발생하기 직전에 호출한다.
+
+  - 사용이유 : 
+    - 성능최적화를 위해 사용한다. 
+    - 컴포넌트가 리렌더링을 할지 말지 결정하는 메소드이다. (함수형 컴포넌트에선 useMemo()가 같은 역할을 한다.)
+    - 리액트 공식 홈페이지에서는 이 메소드 대신 PureComponent를 사용하는 것이 좋다고 한다.
+```js
+shouldComponentUpdate(nextProps, nextState) {
+  return this.props.value !== nextProps.value
+}
+```
+- render
+  - Mounting 에서 등장한 메서드로 업데이트에서도 호출된다.
+
+- getSnapshotBeforeUpdate
+  - 시점 : render 메서드 호출 후 브라우저에 나타나기 바로 직전에 호출되는 메서드이다. (render() -> getSnapshotBeforeUpdate -> DOM에 변화 반영 -> componentDidUpdate)
+
+  - 사용이유 : 브라우저에 그리기 전에 스크롤의 위치, DOM의 크기를 사전에 알고 싶을 때, 업데이트 되기 직전에 DOM 함수를 return 시켜서 그 return된 값을 componentDidUpdate에서 받을 수 있다.
+- componentDidUpdate
+  - 시점
+    - 리렌더링을 완료한 후 실행되는 메서드이다.
+    - 화면에 우리가 원하는 변화가 모두 반영되고 난 뒤 호출한다.
+
+  - 사용이유 : 컴포넌트가 업데이트 되었을 시에 DOM을 조작하기 위해 사용하거나 이전과 현재의 props를 비교하여 네트워크 요청을 보내는 작업을 할 때 유용하다.
+3. Unmounting (제거 할 때) : 컴포넌트가 브라우저상에서 사라질 때
+
+- componentWillUnmount
+  - 시점 : 컴포넌트가 브라우저상에서 사라질 때
+  - 사용이유 : 주로 DOM에 직접 등록했었던 이벤트를 제거하거나 setTimeout이 있다면 타이머를 제거, 외부 라이브러리 인스턴스를 제거하기 위해 사용한다.
