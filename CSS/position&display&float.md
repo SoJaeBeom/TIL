@@ -44,3 +44,27 @@
   - none : 기본값, 요소를 띄우지 않는다.
 - 플롯 속성을 사용할 요소는 position 속성의 absolute 값과 양립할 수 없다.
 - 이미지에 텍스트를 둘러싸게 만들려는 목표로 나온 기법이 floating 이라는 기법이다.
+
+### clear - 플로팅 해제 기법
+- 플로팅한 요소는 문서의 흐름상에서 벗어난 상태이기 때문에 레이아웃을 무너뜨리게 되는데 이러한 문제를 해결하기 위해서는 float 을 해제해 주어야 한다.
+- 여기서 "float 을 해제한다" 는 의미는 float 이 적용된 요소를 해제하는 것이 아니라
+clear 속성을 적용해 float 의 영향을 받지 않도록 하는 것이다.
+- 플롯을 해제하는 방법은 clearfix라는 방법이 있다.
+- float 을 사용해 레이아웃을 잡다보면 clear 가 필요해지기 때문에 가급적 플롯된 요소의 부모 요소에 clearfix 방법을 적용하는 것을 권장한다.
+- clear의 속성 값은 left, right, both, none이다.
+    - left : 왼쪽에 floating 된 요소를 지정 해제
+    - right : 오른쪽에 floating 된 요소를 지정 해제
+    - both : 왼쪽 오른쪽 모두 floating 된 요소를 지정 해제
+    - none : 기본값(default), floating 을 해제하지 않음
+- float 해제 방법에는 4가지 방법이 있다.  
+    -  부모(컨테이닝 요소)에게도 float 속성을 반영하는 방법
+    -  부모 요소에 적용하는데 **display: inline-block;** 속성을 사용하는 방법
+    -  **overflow:hidden;** 방식이다.
+    - CSS의 가상(슈도클래스, 의사클래스) 클래스를 이용하는 방법
+        ```css
+        .parent:after { 
+            content: "";
+            display:block;
+            clear:both;
+        }
+        ```
