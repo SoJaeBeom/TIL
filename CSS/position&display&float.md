@@ -25,12 +25,12 @@
     - block은 한 영역을 차지 하는 박스형태을 가지는 성질이다.(그렇기 때문에 기본적으로 block은 width값이 100%가 된다.)
     - block은 height와 width 값을 지정 할 수 있다.
     - block은 margin과 padding을 지정 할 수 있다.
+    - position 속성의 값으로 absolute, fixed가 지정된 요소는 display 속성이 block으로 변경된다.
 - inline
     - inline은 주로 텍스트를 주입 할 때 사용 되는 형태이다.(그렇기 때문에 기본적으로 block처럼 width값이 100%가 아닌 컨텐츠 영역 만큼 자동으로 잡히게 되며 라인이 새로 추가 되지 않는다.)
     - width와 height를 명시 할 수 없다.
     - margin은 위아래엔 적용 되지 않는다.
     - padding은 좌우는 공간과 시각적인 부분이 모두 적용 되지만 위아래는 시각적으로는 추가되지만 공간을 차지 하지는 않는다.
-    - position 속성의 값으로 absolute, fixed가 지정된 요소는 display 속성이 block으로 변경된다.
 - inline-block
     - inline-block 은 말그대로 inline의 특징과 block의 특징을 모두 가진 요소이다.
     - 줄바꿈이 이루어지지 않는다.
