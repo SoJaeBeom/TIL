@@ -15,8 +15,10 @@
     - 부모 요소 포지션이 relative, absolute, fixed인 태그가 있다면 부모의 요소를 기준으로 움직인다.
     - 부모요소 포지션이 static 이라면 body 태그를 기준으로 배치된다.
     - 부모요소가 없다면 포지션 문서의 body를 기준으로 배치된다.
+    - absolute가 되면 div여도 더는 width: 100%가 아니다.
 - fixed
     - Fixed 포지션은 화면의 스크롤이나 움직임에 관계없이 화면의 특정 부분에 고정되는 포지션이다.
+    - fixed가 되면 div여도 더는 width: 100%가 아니다.
 
 ## 2. display
 - block
@@ -28,6 +30,7 @@
     - width와 height를 명시 할 수 없다.
     - margin은 위아래엔 적용 되지 않는다.
     - padding은 좌우는 공간과 시각적인 부분이 모두 적용 되지만 위아래는 시각적으로는 추가되지만 공간을 차지 하지는 않는다.
+    - position 속성의 값으로 absolute, fixed가 지정된 요소는 display 속성이 block으로 변경된다.
 - inline-block
     - inline-block 은 말그대로 inline의 특징과 block의 특징을 모두 가진 요소이다.
     - 줄바꿈이 이루어지지 않는다.
