@@ -18,3 +18,23 @@
 - 각각의 스택 컨텍스트는 자체적으로 포함되어 있다.
 - 요소의 내용이 쌓인 후에는 전체 요소를 스택 컨텍스트의 쌓인 순서로 고려한다. 
 - 다음 몇몇 CSS 속성, opacity가 1보다 작거나, filter가 none이 이거나, transform이 none이 아닌 것들이 새로운 스택 컨텍스트를 트리거 한다.
+
+### 쌓임 순서 (Staking Order)란?
+- z-index가 높으면 위로 오고, z-index가 낮으면 아래로 가는 것이다.
+
+### 쌓임 맥락 (Stacking Context)란?
+- 같은 부모 밑에 쌓임 순서에 따라 앞뒤로 한꺼번에 움직일 수 있는 요소를 말한다.
+
+### 쌓임 맥락이 만들어지는 조건
+- html요소
+- 요소가 position: static이 아니고 z-index: auto가 아닐 때
+- 요소의 opacity 값이 1보다 작을 때(opacity를 줄 경우 새로운 쌓임 맥락이 생긴다.)
+
+### 특정 쌓임 맥락에서의 쌓임 순서
+1. 쌓임 맥락의 뿌리 요소(즉 html요소)
+2. position값이 있고, z-index가 음수인 요소
+3. position값이 없는 요소
+4. position값이 있고 z-index가 auto인 요소
+5. position값이 있고 z-index가 양수인 요소
+- 2와 같이 position값이 있고 z-index값이 음수인 경우 부모보다 아래로 갈 수 있다.
+
