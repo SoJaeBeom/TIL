@@ -8,3 +8,16 @@
 - 첫째 및 둘째 항이 1이고 그 뒤의 모든 항은 바로 앞 두 항의 합인 수열이다.
 - 피보나치 수를 구하는 재귀 함수 알고리즘의 문제점은 엄청난 중복 호출이 발생한다는 점이다.
 - 결국 프로그램의 전체적인 실행 속도가 느려질 수 밖에 없다.
+
+```js
+let numbers = [];
+function fibo(n) {
+    if (numbers[n] > 0) {
+        return numbers[n];  //이미 구한 수는 재귀호출 없이 저장된 값 리턴(memoization)
+    } else if (n === 1|| n === 2) {
+        return numbers[n] = 1;
+    } else {
+        return numbers[n] = fibo(n - 2) + fibo(n - 1); 
+    }
+}
+```
