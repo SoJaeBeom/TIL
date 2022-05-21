@@ -1,4 +1,4 @@
-bbㅠ## React HOC(Higher-Order Component)
+## React HOC(Higher-Order Component)
 
 - 고차 컴포넌트는 컴포넌트 로직을 재사용하기 위해 사용되고 컴포넌트를 가져와 새 컴포넌트를 반환하는 함수이다.
 - 컴포넌트를 인자로 받거나 반환하는 함수이다.
