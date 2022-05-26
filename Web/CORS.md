@@ -2,6 +2,8 @@
 
 - 우리가 가져오는 리소스들이 안전한지 검사하는 관문이다.
 
+<img src="../Img/CORS_error.png" width="550" height="150" />
+
 ```
 'https://api.lubycon.com/me'에서 오리진 'https://localhost:3000'으로 가져올 수 있는 액세스가 CORS 정책에 의해 차단되었습니다. 요청된 리소스에 'Access-Control-Allow-Origin' 헤더가 없습니다. 불투명한 응답이 필요에 적합한 경우, 요청 모드를 '노코어'로 설정하여 CORS가 비활성화된 리소스를 가져오십시오.
 ```
@@ -15,6 +17,8 @@
   - 이 정책을 Same-Origin-Policy라고 한다.
 
 ## 출처(Origin) 란
+
+<img src="../Img/CORS_origin.png" width="650" height="250" />
 
 - 출처는 Protocol과 Host 그리고 Port까지 모두 합친 것을 의미한다.
 - 자바스크립트로 Location 객체가 가지고 있는 origin 프로퍼티에 접근하여 현재 출처를 알아낼 수도 있다.
