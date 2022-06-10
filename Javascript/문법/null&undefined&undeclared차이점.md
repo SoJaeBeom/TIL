@@ -46,5 +46,5 @@ console.log(baz) // undefined
 var foo = null
 console.log(foo === null) // true
 
-console.log(foo == undefined) // true. 옳지않다. 이렇게 사용하지 안된다.
+console.log(foo == undefined) // true. 옳지않다. 이렇게 사용하면 안된다.
 ```
