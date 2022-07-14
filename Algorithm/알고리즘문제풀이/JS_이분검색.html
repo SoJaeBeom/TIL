@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(target, arr) {
+      let answer
+      let leftPointer = 0
+      let rightPointer = arr.length - 1
+
+      while (leftPointer <= rightPointer) {
+        let midPointer = parseInt((leftPointer + rightPointer) / 2)
+
+        if (arr[midPointer] === target) {
+          answer = midPointer + 1
+          break
+        } else if (arr[midPointer] > target) {
+          rightPointer = midPointer - 1
+        } else {
+          leftPointer = midPointer + 1
+        }
+      }
+      return answer
+    }
+
+    let arr = [23, 87, 65, 12, 57, 32, 99, 81];
+    console.log(solution(32, arr));
+  </script>
+</body>
+
+</html>
