@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>이상한 문자 만들기</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      var answer = '';
+      const upperStr = s.toUpperCase();
+
+      const arr = upperStr.split(" ");
+
+      const changedArr = arr.map((n) => {
+        const charArr = n.split("");
+
+        const changedChar = charArr.map((m, idx) =>
+          idx % 2 ? m.toLowerCase() : m
+        );
+
+        return changedChar.join("");
+      });
+
+      answer = changedArr.join(" ");
+      return answer;
+    }
+    let s = "try hello world"
+
+    console.log(solution(s));
+  </script>
+</body>
+
+</html>
+<!-- 
+- split() 
+- map()
+- join()
+-->
