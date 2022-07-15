@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+
+<body>
+    <script>
+        function solution(participant, completion) {
+            let answer = '';
+
+            let participantMap = new Map()
+
+            for (let x of participant) {
+                if (participantMap.has(x)) {
+                    participantMap.set(x, participantMap.get(x) + 1)
+                } else {
+                    participantMap.set(x, 1)
+                }
+            }
+            for (let x of completion) {
+                if (participantMap.has(x)) {
+                    participantMap.set(x, participantMap.get(x) - 1)
+                }
+            }
+
+            for (let x of participant) {
+                if (participantMap.get(x) > 0) {
+                    answer = x
+                }
+            }
+
+            return answer;
+
+        }
+        let participantArray = ["leo", "kiki", "eden"]
+        let completionArray = ["eden", "kiki"]
+
+        // participantArray = ["marina", "josipa", "nikola", "vinko", "filipa"]	
+        // completionArray = ["josipa", "filipa", "marina", "nikola"]
+
+        // participantArray = ["mislav", "stanko", "mislav", "ana"]	
+        // completionArray = ["stanko", "ana", "mislav"]
+        console.log(solution(participantArray, completionArray));
+    </script>
+</body>
+
+</html>
+
+<!-- 
+Map 객체는 키-값 쌍을 보유하고 키의 삽입 순서를 기억한다.
+모든 값은 키 또는 값으로 사용할 수 있다.
+-->
