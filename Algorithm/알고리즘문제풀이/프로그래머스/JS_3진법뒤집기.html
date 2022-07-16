@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>3진법 뒤집기</title>
+</head>
+
+<body>
+  <script>
+    function solution(n) {
+      const answer = [];
+      while (n !== 0) {
+        answer.unshift(n % 3);
+        n = Math.floor(n / 3);
+      }
+
+      return answer.reduce((acc, v, i) =>
+        acc + (v * Math.pow(3, i)), 0);
+    }
+  </script>
+</body>
+
+</html>
+<!-- 
+reduce() -> 인자로 1.누산기(acc) 2.현재 값(cur) 3.현재 인덱스(idx) 4.원본 배열(src)
+- 배열의 각 요소에 대해 주어진 리듀서(reducer) 함수를 실행하고, 하나의 결과값을 반환한다.
+- 리듀서 함수의 반환 값은 누산기에 할당되고 누산기는 순회 중 유지되므로 결구 최종 결과는 하나의 값이 된다.
+
+unshift() : 새로운 요소를 배열의 맨 앞쪽에 추가하고, 새로운 길이를 반환한다.
+-->
