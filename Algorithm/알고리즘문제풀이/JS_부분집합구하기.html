@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>부분집합 구하기</title>
+</head>
+
+<body>
+  <script>
+    function solution(n) {
+      let answer = []
+      let checkArray = Array.from({
+        length: n + 1
+      }, () => 0)
+
+      function DFS(v) {
+        if (v === n + 1) {
+          let temp = ''
+          for (let i = 1; i <= n; i++) {
+            if (checkArray[i] === 1) {
+              temp += i
+            }
+          }
+          if (temp.length > 0) {
+            answer.push(temp.trim())
+          }
+        } else {
+          checkArray[v] = 1
+          DFS(v + 1)
+          checkArray[v] = 0
+          DFS(v + 1)
+        }
+      }
+
+      DFS(1)
+      return answer
+    }
+    console.log(solution(3));
+  </script>
+</body>
+
+</html>
+
+<!-- 
+Array.from() 메서드
+유사 배열 객체(array-like object)나 반복 가능한 객체(iterable object)를 얕게 복사해 새로운Array 객체를 만든다.
+-->
