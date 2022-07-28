@@ -1,0 +1,44 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>순열 구하기</title>
+</head>
+
+<body>
+  <script>
+    function solution(m, arr) {
+      let answer = []
+      let length = arr.length
+      let checkArray = Array.from({
+        length
+      }, () => 0)
+      let temp = Array.from({
+        length: m
+      }, () => 0)
+
+      function DFS(L) {
+        if (L === m) {
+          answer.push(temp.slice())
+        } else {
+          for (let i = 0; i < length; i++) {
+            if (checkArray[i] === 0) {
+              checkArray[i] = 1
+              temp[L] = arr[i]
+              DFS(L + 1)
+              checkArray[i] = 0
+            }
+          }
+        }
+      }
+
+      DFS(0)
+      return answer;
+    }
+
+    let arr = [3, 6, 9];
+    console.log(solution(2, arr));
+  </script>
+</body>
+
+</html>
