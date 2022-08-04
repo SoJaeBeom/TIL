@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>미로탐색</title>
+</head>
+
+<body>
+  <script>
+    function solution(board) {
+      let answer = 0
+      let dx = [-1, 0, 1, 0]
+      let dy = [0, 1, 0, -1]
+
+      let lengthX = board.length - 1
+      let lengthY = board[0].length - 1
+
+      function DFS(x, y) {
+        if (x === lengthX && y === lengthY) {
+          answer++
+        } else {
+          for (let k = 0; k < 4; k++) {
+            let nextX = x + dx[k]
+            let nextY = y + dy[k]
+
+            if (nextX >= 0 && nextX <= lengthX && nextY >= 0 && nextY <= lengthY && board[nextX][nextY] === 0) {
+              board[nextX][nextY] = 1
+              DFS(nextX, nextY)
+              board[nextX][nextY] = 0
+            }
+          }
+        }
+      }
+      board[0][0] = 1
+      DFS(0, 0)
+      return answer
+    }
+
+    let arr = [
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 1, 1, 1, 1, 1, 0],
+      [0, 0, 0, 1, 0, 0, 0],
+      [1, 1, 0, 1, 0, 1, 1],
+      [1, 1, 0, 0, 0, 0, 1],
+      [1, 1, 0, 1, 1, 0, 0],
+      [1, 0, 0, 0, 0, 0, 0]
+    ];
+
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>
