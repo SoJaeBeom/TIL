@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>송아지 찾기(BFS)</title>
+</head>
+
+<body>
+  <script>
+    function solution(s, e) {
+      let answer = 0
+      let checkArray = Array.from({length: 10001}, () => 0)
+      let disArray = Array.from({length: 10001}, () => 0)
+      let queue = []
+      queue.push(s)
+      checkArray[s] = 1
+      disArray[s] = 0
+
+      while (queue.length) {
+        let x = queue.shift()
+        for (let nx of [x - 1, x + 1, x + 5]) {
+          if (nx === e) {
+            return disArray[x] + 1
+          }
+          if (nx > 0 && nx <= 10001 & checkArray[nx] === 0) {
+            checkArray[nx] = 1
+            queue.push(nx)
+            disArray[nx] = disArray[x] + 1
+          }
+        }
+      }
+      return answer
+    }
+
+    console.log(solution(5, 14));
+  </script>
+</body>
+
+</html>
