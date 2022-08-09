@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>최대공약수와 최소공배수</title>
+</head>
+
+<body>
+  <script>
+    function solution(n, m) {
+      var answer = [];
+      let minNum = Number.MAX_SAFE_INTEGER
+      let maxNum = Number.MIN_SAFE_INTEGER
+
+      for (let i = 1; i <= Math.min(n, m); i++) {
+        if (n % i === 0 && m % i === 0) {
+          minNum = i
+        }
+      }
+
+      maxNum = (n * m) / minNum
+
+      answer.push(minNum, maxNum)
+      return answer;
+    }
+
+    let n = 3
+    let m = 12
+    console.log(solution(n, m));
+  </script>
+</body>
+
+</html>
