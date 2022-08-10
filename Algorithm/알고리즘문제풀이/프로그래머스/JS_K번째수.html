@@ -1,0 +1,34 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>K번째 수</title>
+</head>
+
+<body>
+  <script>
+    function solution(array, commands) {
+      var answer = [];
+
+      for (let [start, end, index] of commands) {
+        let newArray = array.slice(start - 1, end)
+        newArray.sort((a, b) => a - b)
+
+        answer.push(newArray[index - 1])
+      }
+
+      return answer;
+    }
+
+
+    let array = [1, 5, 2, 6, 3, 7, 4]
+    let commands = [
+      [2, 5, 3],
+      [4, 4, 1],
+      [1, 7, 3]
+    ]
+    console.log(solution(array, commands));
+  </script>
+</body>
+
+</html>
