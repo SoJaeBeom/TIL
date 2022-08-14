@@ -1,0 +1,38 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>타겟 넘버</title>
+</head>
+
+<body>
+  <script>
+    function solution(numbers, target) {
+      var answer = 0;
+
+      function DFS(L, sum) {
+        if (L === numbers.length) {
+          if (sum === target) {
+            answer++
+          }
+        } else {
+          DFS(L + 1, sum + numbers[L])
+          DFS(L + 1, sum - numbers[L])
+        }
+      }
+
+      DFS(0, 0)
+
+      return answer;
+    }
+
+    // let numbers = [1, 1, 1, 1, 1]
+    // let target = 3
+
+    let numbers = [4, 1, 2, 1]
+    let target = 4
+    console.log(solution(numbers, target));
+  </script>
+</body>
+
+</html>
