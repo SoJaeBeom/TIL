@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>같은 숫자는 싫어</title>
+</head>
+
+<body>
+  <script>
+    function solution(arr) {
+      var answer = [];
+
+      arr.map((value, index) => {
+        if (arr[index] !== arr[index + 1]) {
+          answer.push(arr[index])
+        }
+      })
+      return answer;
+    }
+    let arr = [1, 1, 3, 3, 0, 1, 1]
+    // let arr = [4, 4, 4, 3, 3]
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>
