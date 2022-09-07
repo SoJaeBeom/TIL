@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>포켓몬</title>
+</head>
+
+<body>
+  <script>
+    function solution(nums) {
+      let answer = 0;
+      let count = nums.length / 2;
+
+      let array = nums.filter((value, index) => {
+        return nums.indexOf(value) === index;
+      })
+
+      if (array.length >= count) {
+        answer = count;
+      } else {
+        answer = array.length;
+      }
+      return answer;
+    }
+    let nums = [3, 1, 2, 3]
+    // let nums = [3, 3, 3, 2, 2, 4]
+    // let nums = [3, 3, 3, 2, 2, 2]
+
+    console.log(solution(nums));
+  </script>
+</body>
+
+</html>
