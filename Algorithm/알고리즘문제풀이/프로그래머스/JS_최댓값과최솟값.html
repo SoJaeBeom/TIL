@@ -1,0 +1,23 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>최댓값과 최솟값</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      const arr = s.split(' ');
+
+      return Math.min(...arr) + ' ' + Math.max(...arr);
+    }
+    // let s = "1 2 3 4"
+    let s = "-1 -2 -3 -4"
+    // let s = "-1 -1"
+
+    console.log(solution(s));
+  </script>
+</body>
+
+</html>
