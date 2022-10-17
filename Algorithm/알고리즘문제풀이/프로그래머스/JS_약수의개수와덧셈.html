@@ -1,0 +1,37 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>약수의 개수와 덧셈</title>
+</head>
+
+<body>
+  <script>
+    function solution(left, right) {
+      let answer = 0;
+
+      for (let i = left; i <= right; i++) {
+        if (Number.isInteger(Math.sqrt(i))) {
+          answer -= i;
+        } else {
+          answer += i;
+        }
+      }
+      return answer;
+    }
+
+    let left = 13
+    let right = 17
+
+    // let left = 24	
+    // let right = 27	
+
+    console.log(solution(left, right));
+  </script>
+</body>
+
+</html>
+<!-- 
+Number.isInteger() : 주어진 값이 정수인지 판별한다.
+Math.sqrt() : 숫자의 제곱근을 반환한다.
+-->
