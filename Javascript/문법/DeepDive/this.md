@@ -45,3 +45,9 @@
 
 - 생성자 함수 내부의 this에는 생성자 함수가 생성할 인스턴스가 바인딩된다.
 - 생성자 함수는 객체(인스턴스)를 생성하는 함수다.
+
+### Function.prototype.apply / call / bind 메서드에 의한 간접 호출
+
+- apply, call, bind 메서드는 Function.prototype의 메서드다.
+- 상속을 받아 사용할 수 있다.
+- apply, call 메서드는 this로 사용할 객체와 인수 리스트를 인수로 전달받아 함수를 호출한다.
