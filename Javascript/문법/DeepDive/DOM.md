@@ -56,3 +56,4 @@
 - DOM을 구성하는 노드 객체는 ECMAScript 사양에 정의된 표준 빌트인 객체가 아니라 브라우저 환경에서 추가적으로 제공하는 호스트 객체다.
 - 모든 노드 객체는 Object, EventTarget, Node 인터페이스를 상속받는다.
 - 문서 노드는 Document, HTMLDocument 인터페이스를 상속받고 어트리뷰트 노드는 Attr, 텍스트 노드는 CharacterData 인터페이스를 각각 상속받는다.
+- 요소 노드는 Element 인터페이스를 상속받는다.
