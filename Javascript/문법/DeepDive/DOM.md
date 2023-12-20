@@ -86,3 +86,11 @@
 
 - Element.prototype.matches메서드는 인수로 전달한 CSS 선택자를 통해 특정 요소 노드를 취득할 수 있는지 확인한다.
 - 이벤트 위임을 사용할 때 유용하다.
+
+### HTMLCollection 과 NodeList
+
+- DOM 컬렉션 객체인 HTMLCollection 과 NodeList는 DOM API가 여러개의 결과값을 반환하기 위한 DOM 컬렉션 객체다.
+- 유사 배열 객체이면서 이터러블이다.
+- 노드 객체의 상태 변화를 실시간으로 반영하는 Live객체다.
+- HTMLCollection은 언제나 Live객체로 동작한다.
+- NodeList는 대부분의 경우 노드 객체의 상태 변화를 실시간으로 반영하지 않고 과거의 정적 상태를 유지하는 non-live 객체로 동작하지만 경우에 따라 Live 객체로 동작할 떄가 있다.
