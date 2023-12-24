@@ -103,3 +103,12 @@
 ### 공백 텍스트 노드
 
 - HTML 요소 사이의 스페이스, 탭, 줄바꿈 등의 공백 문자는 텍스트 노드를 생성한다.
+
+### 자식 노드 탐색
+
+- Node.prototype.childNodes: 자식 노드를 모두 탐색하여 DOM 컬렉션 객체인 NodeList에 담아 반환한다.
+- Element.prototype.children: 자식 노드 중에서 요소 노드만 모두 탐색하여 DOM 컬렉션 객체인 HTMLCollection에 담아 반환한다.
+- Node.prototype.firstChild: 첫번째 자식 노드를 반환한다.
+- Node.prototype.lastChild: 마지막 자식 노드를 반환한다.
+- Element.prototype.firstElementChild: 첫번째 자식 요소 노드를 반환한다.
+- Element.prototype.lastElementChild: 마지막 자식 요소 노드를 반환한다.
