@@ -112,3 +112,8 @@
 - Node.prototype.lastChild: 마지막 자식 노드를 반환한다.
 - Element.prototype.firstElementChild: 첫번째 자식 요소 노드를 반환한다.
 - Element.prototype.lastElementChild: 마지막 자식 요소 노드를 반환한다.
+
+### 자식 노드 존재 확인
+
+- 자식 노드가 존재하는지 확인하려면 Node.prototype.hasChildNodes메서드를 사용한다.
+- childNodes 프로퍼티와 마찬가지로 텍스트 노드를 포함하여 자식 노드의 존재를 확인한다.
